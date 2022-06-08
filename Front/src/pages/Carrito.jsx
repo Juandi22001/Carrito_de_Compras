@@ -4,7 +4,7 @@ import { useForm } from "../hooks/useForm";
 export const Carrito = () => {
 
   const [valor, setvalor] = useState([])
-  const { cart } = useCart()
+  const { cart,Borrar } = useCart()
   useEffect(() => {
 
     SUMA()
@@ -41,19 +41,18 @@ export const Carrito = () => {
 
 
   }
-  const Borrar = (producto) => {
-    console.log(producto)
-    let arregloFiltrado = cart.filter(item => item.Nombre ===producto)
-  
-    
-  }
+
   const Aumentar = (producto) => {
+
+
     console.log(producto)
     for (let index = 0; index < cart.length; index++) {
       const element = cart[index];
 
       if(element.Nombre===producto.Nombre){
         cart[index].Precio= cart[index].Precio*2
+        localStorage.removeItem('cart')
+        localStorage.setItem("cart",JSON.stringify(cart))
         SUMA()
       }
     }

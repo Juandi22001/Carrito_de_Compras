@@ -32,7 +32,7 @@ export const Buscar = () => {
     const { productos, CargandoProductos } = useProducto();
 
     const FiltrarNombre = (e) => {
-
+        console.log("efeeee")
         e.preventDefault()
         if (values.Nombre !== '') {
 
@@ -52,7 +52,7 @@ export const Buscar = () => {
 
 
         }
-        
+
 
         if (values.Precio !== '') {
             var isChecked = document.getElementById('check').checked;
@@ -72,6 +72,7 @@ export const Buscar = () => {
                 let arregloFiltrado = productos.filter(item => item.Precio >= values.Precio);
 
                 setProductosFiltrados(arregloFiltrado)
+                console.log(arregloFiltrado)
             }
 
 
@@ -92,9 +93,9 @@ export const Buscar = () => {
 
 
                 <input type="checkbox" id="check" />
-                <label for="cbox2">Mayor</label>
-                <input type="checkbox" id="check2" />
                 <label for="cbox2">Menor</label>
+                <input type="checkbox" id="check2" />
+                <label for="cbox2">Mayor</label>
 
 
 

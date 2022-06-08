@@ -3,7 +3,16 @@ import axios from 'axios';
 export const useCart = () => {
     let localcart = JSON.parse(localStorage.getItem('cart') || '[]');
     const [cart, setCart] = useState(localcart);
-
+    const Borrar = (producto) => {
+    
+        let arregloFiltrado = cart.filter(item => item.Nombre !== producto.Nombre);
+        setCart(arregloFiltrado)
+      
+        localStorage.removeItem('cart')
+        localStorage.setItem("cart",JSON.stringify(arregloFiltrado))
+        
+      
+      }
     const handleAddCart = (item) => {
 
         let validacion = cart.filter((producto) => producto.id_producto === item.id_producto)
@@ -23,6 +32,8 @@ export const useCart = () => {
         }else {
 
             console.log("no se agrego el cart ")
+               
+            localStorage.setItem("cart",JSON.stringify(cart))
         }
 
 
@@ -35,5 +46,5 @@ export const useCart = () => {
 
 
     });
-    return {cart,handleAddCart}
+    return {cart,handleAddCart,Borrar}
 }
