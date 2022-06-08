@@ -5,6 +5,7 @@ import { Routes, Route ,BrowserRouter as Router} from "react-router-dom"
 import { VerProductos } from './pages/VerProductos'
 import { Navbar } from './components/Navbar';
 import {AgregarProductos}from './pages/AgregarProducto'
+import {Buscar}from './pages/Buscar'
 function App() {
   return (
     
@@ -16,6 +17,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/VerProductos" element={<VerProductos />} />
       <Route path="/AgregarProductos" element={<AgregarProductos />} />
+      <Route path="/Buscar" element={<Buscar />} />
     </Routes>
     </Router>
     </>
