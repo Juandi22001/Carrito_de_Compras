@@ -57,7 +57,7 @@ export const VerProductos = () => {
                           <h2>Precio</h2>
                           <p>  {item.Precio}</p>
 
-
+                          <p>  {item.Descripcion}</p>
                         </div>
 
             

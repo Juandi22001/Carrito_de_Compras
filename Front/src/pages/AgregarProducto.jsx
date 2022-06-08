@@ -40,12 +40,13 @@ export const AgregarProductos = () => {
     }
 
     return (
-        <div class="container p-4">
-            <div class="row">
-                <header>Agregar Productos</header>
+        <div alig="center" >
+              <header align="center">Agregar Productos</header>
+               
 
                 <form id="form" class="topBefore" onSubmit={handleSubmitProducto}>
-                    <button >Crear </button>
+                <div class="cards" align="center">
+              
                     <input id="Nombre" name="Nombre" value={values.Nombre} onChange={handleInputChange} type="text" placeholder="Nombre"></input>
                     <input id="Precio" name="Precio" value={values.Precio} onChange={handleInputChange} type="number" placeholder="Precio"></input>
                     <input id="Cantidad" name="Cantidad" value={values.Cantidad} onChange={handleInputChange} type="number" placeholder="Cantidad"></input>
@@ -53,10 +54,10 @@ export const AgregarProductos = () => {
                     <input id="Categoria" name="Categoria" value={values.Categoria} onChange={handleInputChange} type="text" placeholder="Categoria"></input>
                     <input id="Descripcion" name="Descripcion" value={values.Descripcion} onChange={handleInputChange} type="text" placeholder="Descripcion"></input>
                     <input id="URL" name="URL" type="text" value={values.URL} onChange={handleInputChange} placeholder="URL"></input>
-
-
+                    <button class="button">Crear </button>
+                    </div>
                 </form>
-            </div>
+            
         </div>
     )
 }

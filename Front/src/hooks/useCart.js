@@ -13,6 +13,15 @@ export const useCart = () => {
         
       
       }
+      const EliminarCarro = (producto) => {
+    
+        setCart([])
+      
+        localStorage.removeItem('cart')
+        localStorage.setItem("cart",JSON.stringify([]))
+        
+      
+      }
     const handleAddCart = (item) => {
 
         let validacion = cart.filter((producto) => producto.id_producto === item.id_producto)
@@ -46,5 +55,5 @@ export const useCart = () => {
 
 
     });
-    return {cart,handleAddCart,Borrar}
+    return {cart,handleAddCart,Borrar,EliminarCarro}
 }

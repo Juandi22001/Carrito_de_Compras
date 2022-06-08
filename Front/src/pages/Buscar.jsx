@@ -85,23 +85,23 @@ export const Buscar = () => {
 
         <>
             <div >
-
+            <div class= "cards">
                 <input name="Nombre" value={values.Nombre} onChange={handleInputChange} type="text" placeholder="Nombre" onBlur={FiltrarNombre} />
 
                 <input  name="Categoria" value={values.Categoria} onChange={handleInputChange} type="text" placeholder="Categoria" onBlur={FiltrarNombre} />
-                <input  name="Precio" value={values.Precio} onChange={handleInputChange} type="number" placeholder="Preciooooooooooo" onBlur={FiltrarNombre} />
+             
+    
+            <input  name="Precio" value={values.Precio} onChange={handleInputChange} type="number" placeholder="Preciooooooooooo" onBlur={FiltrarNombre} />
 
 
-                <input type="checkbox" id="check" />
+             
+            </div>
+            <input type="checkbox" id="check" />
                 <label for="cbox2">Menor</label>
                 <input type="checkbox" id="check2" />
                 <label for="cbox2">Mayor</label>
-
-
-
-            </div>
-
-            <div>
+                
+      
                 {
                     ProductosFiltrados.length > 0 &&
                     (
