@@ -31,9 +31,9 @@ export const Buscar = () => {
 
     const { productos, CargandoProductos } = useProducto();
 
-    const FiltrarNombre = () => {
+    const FiltrarNombre = (e) => {
 
-
+        e.preventDefault()
         if (values.Nombre !== '') {
 
             let arregloFiltrado = productos.filter(item => item.Nombre === values.Nombre);
@@ -80,12 +80,12 @@ export const Buscar = () => {
     return (
 
 
-        <div>
+        <div >
+<form id="form" class="topBefore" onSubmit={FiltrarNombre}>
+            <input id="Nombre" name="Nombre" value={values.Nombre} onChange={handleInputChange} type="text" placeholder="Nombre"/>
 
-            <input id="Nombre" name="Nombre" value={values.Nombre} onChange={handleInputChange} type="text" placeholder="Nombre"></input>
-
-            <input id="Categoria" name="Categoria" value={values.Categoria} onChange={handleInputChange} type="text" placeholder="Categoria"></input>
-            <input id="Precio" name="Precio" value={values.Precio} onChange={handleInputChange} type="number" placeholder="Preciooooooooooo"></input>
+            <input id="Categoria" name="Categoria" value={values.Categoria} onChange={handleInputChange} type="text" placeholder="Categoria"/>
+            <input id="Precio" name="Precio" value={values.Precio} onChange={handleInputChange} type="number" placeholder="Preciooooooooooo"/>
 
 
             <input type="checkbox" id="check" />
@@ -93,7 +93,8 @@ export const Buscar = () => {
             <input type="checkbox" id="check2" />
             <label for="cbox2">Menor</label>
 
-            <button onClick={FiltrarNombre} >Buscar </button>
+            <button  >Buscar </button>
+            </form>
             {
                 ProductosFiltrados.length > 0 &&
                 (
@@ -101,7 +102,7 @@ export const Buscar = () => {
 
 
                         <>
-                            <div class="cards">
+                            <div class="cards" key={i+1}>
                                 <article class="card">
                                     <header>
                                         <h2>{item.Nombre}</h2>
@@ -115,26 +116,28 @@ export const Buscar = () => {
 
                                     </div>
 
-                                    <button onClick={handleAddCart}>Agregar </button>
+                               
+                                    
 
+                                    <button onClick={handleAddCart(item)}>Agregar </button>
                                 </article>
 
 
                             </div>
-
-
+                         
 
 
 
                         </>
+                        
 
 
                     ))
 
 
                 )
-            }
-
+            } 
+            
 
         </div>
 

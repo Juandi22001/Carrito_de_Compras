@@ -15,6 +15,8 @@ export const useCart = () => {
             console.log("agregando al cart")
             item.Cantidad=1
             setCart([...cart, item]);
+            console.log(cart)
+            localStorage.setItem("cart",JSON.stringify(cart))
 
 
 
