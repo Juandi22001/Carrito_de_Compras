@@ -1,5 +1,5 @@
 import { useProducto } from "../hooks/useProductos";
-
+import { useCart } from "../hooks/useCart";
 import { useForm } from "../hooks/useForm";
 export const VerProductos = () => {
 
@@ -60,7 +60,7 @@ export const VerProductos = () => {
 
                         </div>
 
-                        <button >Agregar </button>
+            
 
                       </article>
 

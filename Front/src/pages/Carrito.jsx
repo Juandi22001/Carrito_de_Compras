@@ -1,48 +1,117 @@
-export const VerProductos = () =>{
+import { useCart } from "../hooks/useCart";
+import { useState, useEffect } from "react"
+import { useForm } from "../hooks/useForm";
+export const Carrito = () => {
 
+  const [valor, setvalor] = useState([])
+  const { cart } = useCart()
+  useEffect(() => {
+
+    SUMA()
+
+  })
+  const { values, handleInputChange, reset } = useForm({
+    Total: 0, suma: 0
+
+
+
+
+
+
+
+  });
+
+  const SUMA = () => {
+    let suma = []
+    let val = 0
+    for (let index = 0; index < cart.length; index++) {
+      const element = cart[index];
+
+      suma.push(element.Precio)
+
+    }
+    console.log(suma)
+    for (let index = 0; index < suma.length; index++) {
+
+
+      val = suma[index] + val
+    }
+
+    setvalor(val)
+
+
+  }
+  const Borrar = (producto) => {
+    console.log(producto)
+    let arregloFiltrado = cart.filter(item => item.Nombre ===producto)
+  
     
-    return(
-      <div class="container p-4">
+  }
+  const Aumentar = (producto) => {
+    console.log(producto)
+    for (let index = 0; index < cart.length; index++) {
+      const element = cart[index];
+
+      if(element.Nombre===producto.Nombre){
+        cart[index].Precio= cart[index].Precio*2
+        SUMA()
+      }
+    }
+    
+  }
+
+
+  return (
+    <div class="container p-4">
       <div class="row">
         <div class="col-md-4 mx-auto">
-          <div class="card card-body">
-  
-            
-            <h1><small> Producto</small><i class="fas fa-marker"></i></h1>
-              <div class="form-group" >
-              <h2><small>Nombre </small></h2>
-         
-              </div>
-              <h2><small>Cantidad </small></h2>
-              <div class="form-group" >
-  
-              </div>
-              
-              <div class="form-group" >
-              <h2><small>Precio$$ </small></h2>
-  
-              </div>
-        
-              <div class="form-group" >
-              <h2><small>Ubicacion </small></h2>
-       
-              </div>
-              <div class="form-group" >
-              <h2><small>Categoria </small></h2>
 
-              </div>
-            
-              <div class="form-group">
-    
-                <textarea name="descripcion" class="form-control" cols="30" rows="10"></textarea>
-              </div>
-        
-              
-         
-         
+          <div class="cards">
+
+            {
+              cart.length > 0 &&
+
+              (
+                cart.map((item, i) => (
+
+                  <>
+                    <article class="card">
+                      <header>
+                        <h2>{item.Nombre}</h2>
+                        <button onClick={() => Borrar(item)} >Borrar </button>
+                        <button onClick={() => Aumentar(item)}  >+1 </button>
+                      </header>
+
+                      <div class="content">
+                        <h2>Precio</h2>
+                        <p>  {item.Precio}</p>
+                        
+
+                      </div>
+
+
+
+                    </article>
+
+
+
+
+                  </>
+                ))
+
+              )
+            }
+
+          
+
           </div>
+
+          <h2>TOTAL</h2>
+            <h1>{valor}</h1>
+
+
         </div>
       </div>
     </div>
-    )
+  )
 }
