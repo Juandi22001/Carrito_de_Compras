@@ -1,10 +1,11 @@
 import { useCart } from "../hooks/useCart";
 import { useState, useEffect } from "react"
 import { useForm } from "../hooks/useForm";
+import { useProducto } from "../hooks/useProductos";
 export const Carrito = () => {
-
+  const { productos, CargandoProductos } = useProducto();
   const [valor, setvalor] = useState([])
-  const { cart, Borrar ,EliminarCarro} = useCart()
+  const { cart, Borrar, EliminarCarro } = useCart()
   useEffect(() => {
 
     SUMA()
@@ -42,18 +43,25 @@ export const Carrito = () => {
 
   }
 
-  const Aumentar = (producto) => {
+  const Aumentar = (productoSeleccionado) => {
 
 
-    console.log(producto)
+    console.log(productoSeleccionado)
     for (let index = 0; index < cart.length; index++) {
       const element = cart[index];
 
-      if (element.Nombre === producto.Nombre) {
-        cart[index].Precio = cart[index].Precio * 2
-        localStorage.removeItem('cart')
-        localStorage.setItem("cart", JSON.stringify(cart))
-        SUMA()
+      if (element.Nombre === productoSeleccionado.Nombre) {
+        for (let index2 = 0; index2 < productos.length; index2++) {
+          if (element.Nombre === productos[index2].Nombre)
+            cart[index].Precio = cart[index].Precio +productos[index2].Precio
+          localStorage.removeItem('cart')
+          localStorage.setItem("cart", JSON.stringify(cart))
+          SUMA()
+
+
+        }
+
+
       }
     }
 
@@ -85,28 +93,28 @@ export const Carrito = () => {
 
 
                       <tr>
-                      <td>{i}</td>
+                        <td>{i}</td>
                         <td>{item.Nombre}</td>
-                        
+
                         <td>{item.Precio}</td>
-                        
+
                         <td>{item.Categoria}</td>
-                        
+
                         <td>
-                        <button class="button" onClick={() => Borrar(item)} >Borrar </button>
-                        <button class="button"  onClick={() => Aumentar(item)}  >+1 </button>
+                          <button class="button" onClick={() => Borrar(item)} >Borrar </button>
+                          <button class="button" onClick={() => Aumentar(item)}  >+1 </button>
                         </td>
 
-                   
-                      
+
+
                       </tr>
 
 
 
 
 
-                     
-                     
+
+
 
 
 
@@ -129,8 +137,8 @@ export const Carrito = () => {
 
         <h2>TOTAL</h2>
         <h1>${valor}</h1>
-        <button class="button"  onClick={() => EliminarCarro()}  >Borrar Productos </button>
-                    
+        <button class="button" onClick={() => EliminarCarro()}  >Borrar Productos </button>
+
 
       </div>
     </div>
